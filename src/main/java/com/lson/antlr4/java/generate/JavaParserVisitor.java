@@ -1,4 +1,4 @@
-// Generated from D:/workspace/antlr-project/src/main/resources/JavaParser.g4 by ANTLR 4.13.1
+// Generated from D:/workspace/antlr4-project/src/main/resources/JavaParser.g4 by ANTLR 4.13.1
 package com.lson.antlr4.java.generate;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 

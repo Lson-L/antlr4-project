@@ -2,6 +2,7 @@ package com.lson.antlr4.java;
 
 import com.lson.antlr4.java.generate.JavaParser;
 import com.lson.antlr4.java.generate.JavaParserBaseListener;
+import lombok.Getter;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.TokenStreamRewriter;
@@ -23,19 +24,23 @@ import java.util.Stack;
  *
  * @date 2024/8/13
  **/
+@Getter
 public class JavaLoggerListener extends JavaParserBaseListener {
+    @Getter
     private boolean error;
 
-    TokenStreamRewriter rewriter;
-    TokenStream tokens;
+    @Getter
+    final TokenStreamRewriter rewriter;
+    final TokenStream tokens;
 
+    @Getter
     boolean needReWriter = false;
 
     private boolean hasImportLog = false;
 
     private String logIdentifierVar;
 
-    private Stack<String> currentFieldTypeStack = new Stack<>();
+    private final Stack<String> currentFieldTypeStack = new Stack<>();
 
     Map<Level, Integer> logLevelMap = new HashMap<>();
 
@@ -140,7 +145,7 @@ public class JavaLoggerListener extends JavaParserBaseListener {
                         Token start = statementContext.getStart();
                         Token token = tokens.get(start.getTokenIndex() - 1);
                         String ws = getWs(token);
-                        int startIndex = start.getCharPositionInLine();
+//                        int startIndex = start.getCharPositionInLine();
                         needReWriter = true;
                         rewriter.insertBefore(start, beforeInsert + ws + "\t");
                         rewriter.insertAfter(statementContext.getStop(), ws + "}");
@@ -165,11 +170,11 @@ public class JavaLoggerListener extends JavaParserBaseListener {
         return "";
     }
 
-    public String createSpace(int count) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(" ".repeat(Math.max(0, count)));
-        return sb.toString();
-    }
+//    public String createSpace(int count) {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append(" ".repeat(Math.max(0, count)));
+//        return sb.toString();
+//    }
 
 
     private Level findLevelMethod(String text) {
@@ -265,25 +270,10 @@ public class JavaLoggerListener extends JavaParserBaseListener {
     }
 
 
-    public TokenStreamRewriter getRewriter() {
-        return rewriter;
-    }
-
-    public void setRewriter(TokenStreamRewriter rewriter) {
-        this.rewriter = rewriter;
-    }
-
-    public boolean isNeedReWriter() {
-        return needReWriter;
-    }
-
     @Override
     public void visitErrorNode(ErrorNode node) {
         super.visitErrorNode(node);
         error = true;
     }
 
-    public boolean isError() {
-        return error;
-    }
 }
