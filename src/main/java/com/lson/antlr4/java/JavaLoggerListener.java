@@ -2,7 +2,6 @@ package com.lson.antlr4.java;
 
 import com.lson.antlr4.java.generate.JavaParser;
 import com.lson.antlr4.java.generate.JavaParserBaseListener;
-import lombok.Getter;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.TokenStreamRewriter;
@@ -24,16 +23,12 @@ import java.util.Stack;
  *
  * @date 2024/8/13
  **/
-@Getter
 public class JavaLoggerListener extends JavaParserBaseListener {
-    @Getter
     private boolean error;
 
-    @Getter
     final TokenStreamRewriter rewriter;
     final TokenStream tokens;
 
-    @Getter
     boolean needReWriter = false;
 
     private boolean hasImportLog = false;
@@ -170,13 +165,6 @@ public class JavaLoggerListener extends JavaParserBaseListener {
         return "";
     }
 
-//    public String createSpace(int count) {
-//        StringBuilder sb = new StringBuilder();
-//        sb.append(" ".repeat(Math.max(0, count)));
-//        return sb.toString();
-//    }
-
-
     private Level findLevelMethod(String text) {
         if (StringUtils.isBlank(text)) {
             return null;
@@ -276,4 +264,35 @@ public class JavaLoggerListener extends JavaParserBaseListener {
         error = true;
     }
 
+    public boolean isError() {
+        return error;
+    }
+
+    public TokenStreamRewriter getRewriter() {
+        return rewriter;
+    }
+
+    public TokenStream getTokens() {
+        return tokens;
+    }
+
+    public boolean isNeedReWriter() {
+        return needReWriter;
+    }
+
+    public boolean isHasImportLog() {
+        return hasImportLog;
+    }
+
+    public String getLogIdentifierVar() {
+        return logIdentifierVar;
+    }
+
+    public Stack<String> getCurrentFieldTypeStack() {
+        return currentFieldTypeStack;
+    }
+
+    public Map<Level, Integer> getLogLevelMap() {
+        return logLevelMap;
+    }
 }

@@ -1,9 +1,5 @@
 package com.lson.antlr4.java;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -16,8 +12,6 @@ import java.util.List;
  *
  * @date 2024/8/15
  **/
-@Getter
-@Setter
 public class JavaFold extends JavaFile {
 
     private List<JavaFile> children = new ArrayList<>();
@@ -51,4 +45,15 @@ public class JavaFold extends JavaFile {
         return true;
     }
 
+    public List<JavaFile> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<JavaFile> children) {
+        this.children = children;
+    }
+
+    public int getCount() {
+        return count;
+    }
 }

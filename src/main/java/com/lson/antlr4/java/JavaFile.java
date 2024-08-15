@@ -1,8 +1,5 @@
 package com.lson.antlr4.java;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.File;
 
@@ -13,8 +10,6 @@ import java.io.File;
  *
  * @date 2024/8/15
  **/
-@Getter
-@Setter
 public class JavaFile {
     private String path;
     private JavaFold parent;
@@ -32,5 +27,41 @@ public class JavaFile {
         javaFile.setName(file.getName());
         javaFile.setPath(file.getAbsolutePath());
         return javaFile;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public JavaFold getParent() {
+        return parent;
+    }
+
+    public void setParent(JavaFold parent) {
+        this.parent = parent;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
+    }
+
+    public File getFile() {
+        return file;
     }
 }
