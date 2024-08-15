@@ -90,7 +90,7 @@ public class LoggerModifier {
             if (!file.getName().endsWith(".java")) {
                 return;
             }
-            JavaFile javaFile = new JavaFile(file);
+            JavaFile javaFile = JavaFile.createJavaFold(file);
             javaFile.setParent(javaFold);
             javaFold.incrementCount();
             javaFold.getChildren().add(javaFile);

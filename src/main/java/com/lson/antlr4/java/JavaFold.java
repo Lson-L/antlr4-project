@@ -24,7 +24,7 @@ public class JavaFold extends JavaFile {
 
     private int count;
 
-    public JavaFold(File file) {
+    private JavaFold(File file) {
         super(file);
     }
 

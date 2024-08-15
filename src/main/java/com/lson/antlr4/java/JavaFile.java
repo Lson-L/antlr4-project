@@ -23,7 +23,7 @@ public class JavaFile {
     private boolean error;
     private final File file;
 
-    public JavaFile(File file) {
+    protected JavaFile(File file) {
         this.file = file;
     }
 
